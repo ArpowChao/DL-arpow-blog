@@ -1,0 +1,47 @@
+name: Deploy Jekyll Blog to VM
+
+on:
+  push:
+    branches:
+      - master # 或者您的主分支名稱，例如 main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # 在最新的 Ubuntu 環境中運行這個工作
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # 檢查您的儲存庫程式碼到工作環境中
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }} # 從 GitHub Secrets 中獲取 SSH 私鑰
+
+      - name: Deploy via SSH
+        env:
+          VM_HOST: ${{ secrets.VM_HOST }} # 從 GitHub Secrets 中獲取 VM 的 IP 或主機名
+          VM_USER: ${{ secrets.VM_USER }} # 從 GitHub Secrets 中獲取 VM 的使用者名稱
+          VM_PROJECT_DIR: ${{ secrets.VM_PROJECT_DIR }} # 從 GitHub Secrets 中獲取 VM 上的專案目錄路徑
+        run: |
+          # 確保 SSH 連線到 VM
+          ssh -o StrictHostKeyChecking=no $VM_USER@$VM_HOST << 'EOF'
+            # 進入專案目錄
+            cd $VM_PROJECT_DIR
+
+            # 拉取最新的程式碼 (確保 VM 上的程式碼與 GitHub 同步)
+            git pull origin master # 或者您的分支名稱，例如 main
+
+            # 使用 Docker Compose 重新建置 Jekyll 網站
+            # --rm 選項會在命令執行完畢後移除容器
+            docker compose run --rm builder jekyll build
+
+            # 重啟網頁伺服器容器以確保讀取最新內容
+            docker compose restart webserver
+
+            echo "網站部署完成！"
+          EOF
+
+      - name: Notify success (Optional)
+        # 您可以在這裡添加一個步驟來發送部署成功的通知，例如到 Slack 或郵箱
+        run: echo "部署到 VM 成功！"
