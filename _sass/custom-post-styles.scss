@@ -1,0 +1,74 @@
+// _sass/custom-post-styles.scss
+
+// 引入主題的變數和混合宏 (如果需要的話)
+// @import "minima/variables";
+// @import "minima/mixins";
+
+// 客製化文章標題樣式
+.post-title {
+  color: #333; // 深灰色標題
+  font-size: 2.5em; // 較大的字體大小
+  margin-bottom: 0.5em; // 標題下方留白
+  border-bottom: 2px solid #eee; // 標題下方添加一條細線
+  padding-bottom: 0.3em; // 線條上方留白
+}
+
+// 客製化文章元數據樣式
+.post-meta-info {
+  font-size: 0.9em; // 較小的字體大小
+  color: #777; // 淺灰色文字
+  margin-bottom: 1.5em; // 元數據下方留白
+  // 元數據中的圖標樣式 (需要引入 Font Awesome)
+  .fa, .far {
+    margin-right: 0.3em; // 圖標右側留白
+  }
+  // 元數據中的連結樣式
+  a {
+    color: #555; // 連結顏色
+    text-decoration: none; // 移除下劃線
+    &:hover {
+      text-decoration: underline; // 鼠標懸停時顯示下劃線
+    }
+  }
+}
+
+// 客製化文章內容區塊樣式
+.post-content {
+  line-height: 1.8; // 行高增加，提高可讀性
+  font-size: 1.1em; // 內容字體大小微調
+  color: #444; // 內容文字顏色
+  padding: 1em 0; // 內容區塊上下留白
+  // 您可以在這裡添加更多樣式，例如段落、圖片、列表等的樣式
+  p {
+    margin-bottom: 1em; // 段落之間留白
+  }
+  img {
+    max-width: 100%; // 圖片最大寬度為其容器的100%，防止溢出
+    height: auto; // 高度自動調整，保持圖片比例
+    display: block; // 圖片作為塊級元素，方便設置邊距
+    margin: 1em auto; // 圖片上下留白並居中
+    border: 1px solid #ddd; // 圖片添加邊框
+    padding: 5px; // 邊框與圖片內容之間留白
+  }
+  // 程式碼區塊樣式 (如果使用 highlight 標籤)
+  pre {
+    background-color: #f8f8f8; // 程式碼區塊背景色
+    border: 1px solid #ddd; // 程式碼區塊邊框
+    border-radius: 5px; // 圓角邊框
+    padding: 1em; // 內邊距
+    overflow-x: auto; // 如果程式碼太長，顯示水平滾動條
+  }
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; // 程式碼字體
+  }
+}
+
+// 添加一些基本的響應式設計 (可選)
+@media (max-width: 768px) {
+  .post-title {
+    font-size: 2em; // 在小螢幕上標題字體小一點
+  }
+  .post-content {
+    font-size: 1em; // 在小螢幕上內容字體小一點
+  }
+}

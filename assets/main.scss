@@ -1,0 +1,16 @@
+// assets/main.scss
+
+// 在這裡設定 Jekyll 網站的樣式，它會被編譯成 assets/main.css
+
+// 引入主題的預設樣式
+// 如果您使用的是 Minima 主題，通常是引入 "minima"
+// 如果您使用其他 Gem-based 主題，請根據主題文件確認要引入的名稱
+@import "minima";
+
+// 引入您的客製化樣式
+// 這裡引入了我們之前創建的 _sass/custom-post-styles.scss 檔案
+// 注意：這裡只需要寫檔案名稱，不需要包含 _sass/ 和 .scss 副檔名
+@import "custom-post-styles";
+
+// 您也可以在這裡直接添加其他的 Sass/CSS 規則
+// 例如：body { font-family: "Arial", sans-serif; }

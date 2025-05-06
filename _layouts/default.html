@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    {% include head.html %} {# 這行表示引入 _includes/head.html 檔案的內容，如果有的話 #}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <title>{{ page.title | default: site.title | escape }}</title>
+    {% seo %} {# 這行用於插入 SEO 相關的 meta 標籤 #}
+  </head>
+
+  <body>
+    <div class="container">
+      <section id="main_content">
+        {{ content }} {# 這裡會插入使用 default 佈局的頁面或文章的內容 #}
+      </section>
+    </div>
+  </body>
+</html>
